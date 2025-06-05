@@ -8,25 +8,14 @@ jobs:
 
     outputs:
       salida: ${{ steps.step_1.outputs.my_variable }}
-
-    env:
-      name: CodigoFacilito
     
     steps:
-      - name: Working dir
-        id: step_1
-        run: echo "my_variable=Hola Mundo" >> $GITHUB_OUTPUT
+      - name: Generar archivo
+        run: |
+          echo "Archivo prueba, hola" >> test.log
       
-      - name: Obtener mensaje
-        run: echo "${{ steps.step_1.outputs.my_variable }}"
-
-  seconds_jobs:
-    needs: firts_jobs
-    runs-on: ubuntu-latest
-
-    env:
-      SALIDA: ${{ needs.firts_jobs.outputs.salida }}
-
-    steps:
-      - name: Hola Mundo Segundo
-        run: echo "$SALIDA"
+      - name: Subir artefacto
+        uses: actions/upload-artifac@v4
+        with:
+          name: archivo-test
+          path: test.log
