@@ -22,6 +22,7 @@ jobs:
 
   segundo_jobs:
     runs-on: ubuntu-latest
+    needs: firts_jobs
 
     steps:
       - name: Generar archivo
