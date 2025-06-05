@@ -4,7 +4,7 @@ on: push
 
 jobs:
   firts_jobs:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
 
     env:
       name: CodigoFacilito
@@ -22,7 +22,7 @@ jobs:
   seconds_jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: firts_jobs
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Hola Mundo Segundo
