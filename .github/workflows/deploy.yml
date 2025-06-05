@@ -19,3 +19,19 @@ jobs:
         with:
           name: archivo-test
           path: test.log
+
+  segundo_jobs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generar archivo
+        run: |
+          echo "Archivo prueba, hola" >> test.log
+      
+      - name: Descargar artefacto
+        uses: actions/download-artifact@v4
+        with:
+          name: archivo-test
+      
+      - name: CAT file
+        run: cat test.log
