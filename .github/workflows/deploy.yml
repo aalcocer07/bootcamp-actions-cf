@@ -6,6 +6,9 @@ jobs:
   firts_jobs:
     runs-on: ubuntu-latest
 
+    outputs:
+      salida: ${{ steps.step_1.outputs.my_variable }}
+
     env:
       name: CodigoFacilito
     
@@ -21,6 +24,9 @@ jobs:
     needs: firts_jobs
     runs-on: ubuntu-latest
 
+    env:
+      SALIDA: ${{ needs.firts_jobs.outputs }}
+
     steps:
       - name: Hola Mundo Segundo
-        run: echo "Hola Mundo ${{ github.ref }}"
+        run: echo "$SALIDA"
